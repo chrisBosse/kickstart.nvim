@@ -90,6 +90,11 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Chris Bosse
+-- https://www.reddit.com/r/neovim/comments/una6b0/comment/i86riqk/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+vim.keymap.set({ 'i', 'c', 'l' }, 'jk', [[<C-\><C-n>]]) -- no need to escape the '\'
+vim.keymap.set({ 'i', 'c', 'l' }, 'kj', '<C-\\><C-n>') -- escape the '\'
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
