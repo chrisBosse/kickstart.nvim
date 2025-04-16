@@ -831,6 +831,11 @@ require('lazy').setup({
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+
+        -- Chris Bosse 2025-01-28 I use "prettier" with my Typescript
+        typescript = { 'prettier', stop_after_first = true },
+        -- Chris Bosse 2024 I use "prettier" in my Vue projects
+        vue = { 'prettier', stop_after_first = true },
       },
     },
   },
