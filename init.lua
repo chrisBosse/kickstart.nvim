@@ -527,6 +527,14 @@ require('lazy').setup({
           --  Useful when your language has ways of declaring types without an actual implementation.
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
+          --cjb Jump to next git hunk
+          map(']g', function()
+            require('gitsigns').nav_hunk 'next'
+          end, '[]] [g]itsigns nav_hunk next')
+          map('[g', function()
+            require('gitsigns').nav_hunk 'prev'
+          end, '[[] [g]itsigns nav_hunk prev')
+
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
