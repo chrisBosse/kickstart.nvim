@@ -95,6 +95,19 @@ vim.g.maplocalleader = ' '
 vim.keymap.set({ 'i', 'c', 'l' }, 'jk', [[<C-\><C-n>]]) -- no need to escape the '\'
 vim.keymap.set({ 'i', 'c', 'l' }, 'kj', '<C-\\><C-n>') -- escape the '\'
 
+-- https://github.com/ThePrimeagen/init.lua/blob/249f3b14cc517202c80c6babd0f9ec548351ec71/lua/theprimeagen/remap.lua#L34
+--vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
+-- I like <C-f> for Forward Screen.
+vim.keymap.set('n', '<C-t>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
+
+vim.keymap.set('n', '<C-k>', '<cmd>cnext<CR>zz')
+vim.keymap.set('n', '<C-j>', '<cmd>cprev<CR>zz')
+vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
+vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
+
+vim.keymap.set('n', '<leader>R', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Replace text' })
+vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Make current file executable' })
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
