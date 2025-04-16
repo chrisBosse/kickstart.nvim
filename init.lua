@@ -302,6 +302,38 @@ require('lazy').setup({
     },
   },
 
+  -- VimWiki Setup
+  {
+    'vimwiki/vimwiki',
+    init = function()
+      vim.g.vimwiki_list = {
+        {
+          path = '~/Documents/vim-wiki/work-notebook.wiki',
+          syntax = 'markdown',
+          nested_syntaxes = { ['javascript'] = 'javascript', ['js'] = 'javascript', ['bash'] = 'bash' },
+          ext = '.md',
+          index = 'home',
+        },
+        {
+          path = '~/Documents/vim-wiki/non-work-notebook.wiki',
+          syntax = 'markdown',
+          nested_syntaxes = { ['javascript'] = 'javascript', ['js'] = 'javascript', ['bash'] = 'bash' },
+          ext = '.md',
+          index = 'Home',
+        },
+      }
+      vim.g.vimwiki_ext2syntax = {
+        ['.md'] = 'markdown',
+        ['.markdown'] = 'markdown',
+        ['.mdown'] = 'markdown',
+      }
+    end,
+  },
+  -- For VimWiki autp pull and auto push to Git
+  {
+    'chazy/dirsettings',
+  },
+
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
