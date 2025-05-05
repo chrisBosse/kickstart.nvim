@@ -299,6 +299,25 @@ require('lazy').setup({
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
+      -- https://github.com/lewis6991/gitsigns.nvim?tab=readme-ov-file#-keymaps
+      on_attach = function(bufgsnr)
+        local gitsigns = require 'gitsigns'
+
+        vim.keymap.set('n', ']g', function()
+          if vim.wo.diff then
+            vim.cmd.normal { ']g', bang = true }
+          else
+            gitsigns.nav_hunk 'next'
+          end
+        end, { buffer = bufgsnr, desc = ':Gitsigns nav_hunk next' })
+        vim.keymap.set('n', '[g', function()
+          if vim.wo.diff then
+            vim.cmd.normal { '[g', bang = true }
+          else
+            gitsigns.nav_hunk 'prev'
+          end
+        end, { buffer = bufgsnr, desc = ':Gitsigns nav_hunk prev' })
+      end,
     },
   },
 
@@ -616,14 +635,6 @@ require('lazy').setup({
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
           map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
-
-          --cjb Jump to next git hunk
-          map(']g', function()
-            require('gitsigns').nav_hunk 'next'
-          end, '[]] [g]itsigns nav_hunk next')
-          map('[g', function()
-            require('gitsigns').nav_hunk 'prev'
-          end, '[[] [g]itsigns nav_hunk prev')
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
