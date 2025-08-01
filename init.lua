@@ -771,7 +771,7 @@ require('lazy').setup({
           },
         },
 
-        volar = {
+        vue_ls = {
           filetypes = {
             'typescript',
             'javascript',
@@ -784,6 +784,16 @@ require('lazy').setup({
               hybridMode = false,
             },
           },
+        },
+
+        vtsls = {
+          -- these are set in after/lsp/vtsls.lua
+          -- https://www.reddit.com/r/neovim/comments/1lxwz5r/comment/n3ceqt1/
+          -- * typescript-language-server: vtsls completely substitutes this since it acts as a wrapper over the former, so if you have vtsls configured for js,ts,vue files, you don't need this anymore and, in fact, it's going to cause some conflicts on load.
+
+          -- * TSInstall vue, css, html: you need the treesitter parsers for vue, css and html separately since they act in hybrid mode, just in case.
+
+          -- * after/lsp: if you're using mason and mason-lspconfig together with nvim-lspconfig to run your default configurations, you can't have just an lsp/vtsls.lua since that one overrides the actual vim.lsp.enable call from mason-lspconfig against nvim-lspconfig provided configurations. Instead, you need to create an after directory, so that vim.lsp.enable it's going to call it after the main lsp configurations are done (vue_ls from nvim-lspconfig), that way your custom vtsls.lua configuration is going to run after the default configurations (which are more than enough usually). This change solved the main problem I was facing while using the modern lsp way of handling ls setup.
         },
       }
 
