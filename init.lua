@@ -184,6 +184,16 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Turn spellchecking on for certain files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'gitcommit' },
+  command = 'setlocal spell',
+})
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = { '*.md' },
+  command = 'setlocal spell',
+})
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
